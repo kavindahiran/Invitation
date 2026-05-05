@@ -4,7 +4,6 @@
   <title>Nipuni & Kavinda Wedding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
@@ -14,25 +13,41 @@
       background: linear-gradient(135deg, #fdf8f5, #f3e9e2);
       text-align: center;
       color: #5a3e36;
+      overflow-x: hidden;
+    }
+
+    /* 🌸 floral soft overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: url('https://www.transparenttextures.com/patterns/flowers.png');
+      opacity: 0.08;
+      pointer-events:none;
     }
 
     .container {
       padding: 15px;
       max-width: 600px;
       margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
       font-size: 34px;
       color: #b08b57;
-      margin-bottom: 10px;
     }
 
     h2 {
-      font-family: 'Playfair Display', serif;
       font-size: 26px;
-      margin: 10px 0;
     }
 
     .card {
@@ -44,15 +59,12 @@
       animation: fadeIn 1s ease;
     }
 
-    .gold {
-      color: #b08b57;
-      font-weight: 600;
-    }
+    .gold { color: #b08b57; }
 
     .btn {
       display: inline-block;
-      margin-top: 12px;
-      padding: 12px 20px;
+      margin: 8px;
+      padding: 12px 18px;
       background: linear-gradient(135deg, #b08b57, #d4af7a);
       color: white;
       border-radius: 30px;
@@ -60,18 +72,12 @@
       border: none;
       cursor: pointer;
       transition: 0.3s;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-
-    .countdown {
-      font-size: 18px;
-      margin-top: 15px;
-      font-weight: 500;
     }
 
     hr {
@@ -81,53 +87,75 @@
       margin: 15px 0;
     }
 
-    /* Fade animation */
+    .countdown {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {opacity:0; transform: translateY(15px);}
+      to {opacity:1; transform: translateY(0);}
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 480px) {
-      h1 { font-size: 28px; }
-      h2 { font-size: 22px; }
-      .card { padding: 20px; }
+    /* ✨ floating sparkles */
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: #d4af7a;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: floatUp 6s linear infinite;
     }
 
-    /* Smooth transition between screens */
-    #mainContent {
-      animation: fadeIn 0.8s ease;
+    @keyframes floatUp {
+      from { transform: translateY(100vh); opacity: 0; }
+      to { transform: translateY(-10vh); opacity: 1; }
     }
 
+    /* 🎵 music button */
+    #musicBtn {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      z-index: 10;
+    }
+
+    @media (max-width:480px){
+      h1 {font-size:28px;}
+      h2 {font-size:22px;}
+    }
   </style>
 </head>
 
 <body>
 
+<!-- 🎵 background music -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<button class="btn" id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
+
 <div class="container">
 
-  <!-- Welcome Screen -->
+  <!-- Welcome -->
   <div id="welcomeScreen" class="card">
 
     <h1>💍 Wedding Invitation</h1>
 
-    <p style="margin-top:20px;">
-     With great joy, we invite you to share in the celebration of our wedding.
+    <p>
+      With great joy, we invite you to share in the celebration of our wedding.
     </p>
 
     <p>
       We would be truly honored by your presence as we mark this meaningful milestone.
     </p>
 
-    <br>
-
-    <button class="btn" onclick="showInvitation()">
-      View Invitation
-    </button>
-
+    <button class="btn" onclick="showInvitation()">View Invitation</button>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <div id="mainContent" style="display:none;">
     <div class="card">
 
@@ -139,18 +167,19 @@
 
       <hr>
 
-      <p><b>Date:</b> May 21, 2026 (Thursday)</p>
+      <p><b>Date:</b> May 21, 2026</p>
       <p><b>Time:</b> 9:00 AM – 4:30 PM</p>
 
-      <p><b>Venue:</b><br>
-      Opuleent River Face Hotel,<br> Nawala</p>
+      <p><b>Venue:</b> Opulent River Face Hotel, Nawala</p>
 
-      <a class="btn" href="Invitation.pdf" target="_blank">
-        📄 View Wedding Card
+      <a class="btn" href="Invitation.pdf" target="_blank">📄 View Wedding Card</a>
+
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeMR2j7mU4JboKlWwmP1Ccg9i70p0Kke5r1pf17uuxmsCVeRw/viewform?usp=publish-editor" target="_blank">
+        📩 RSVP
       </a>
 
       <a class="btn" href="https://maps.google.com/?q=Opuleent River Face Hotel Nawala" target="_blank">
-        📍 View Location
+        📍 Location
       </a>
 
       <div class="countdown" id="countdown"></div>
@@ -161,29 +190,41 @@
 </div>
 
 <script>
-  function showInvitation() {
-    document.getElementById("welcomeScreen").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-  }
+function showInvitation(){
+  document.getElementById("welcomeScreen").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+}
 
-  const weddingDate = new Date("May 21, 2026 09:00:00").getTime();
+/* 🎵 music */
+function toggleMusic(){
+  const bgm = document.getElementById("bgm");
+  if(bgm.paused){ bgm.play(); }
+  else { bgm.pause(); }
+}
 
-  const timer = setInterval(function () {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+/* ⏳ countdown */
+const weddingDate = new Date("May 21, 2026 09:00:00").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const d = Math.floor(distance/(1000*60*60*24));
+  const h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((distance%(1000*60*60))/(1000*60));
 
-    document.getElementById("countdown").innerHTML =
-      "⏳ " + days + " days " + hours + " hrs " + minutes + " mins left";
+  document.getElementById("countdown").innerHTML =
+    "⏳ " + d + " days " + h + " hrs " + m + " mins";
 
-    if (distance < 0) {
-      clearInterval(timer);
-      document.getElementById("countdown").innerHTML = "🎉 It's Wedding Time!";
-    }
-  }, 1000);
+},1000);
+
+/* ✨ sparkles */
+for(let i=0;i<25;i++){
+  let s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
