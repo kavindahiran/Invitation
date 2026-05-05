@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nipuni & Kavinda Wedding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #fdf8f5;
+      text-align: center;
+      color: #5a3e36;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 38px;
+      color: #b08b57;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gold {
+      color: #b08b57;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #b08b57;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .countdown {
+      font-size: 20px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>💍 Wedding Invitation</h1>
+
+    <h2><span class="gold">Nipuni</span> & <span class="gold">Kavinda</span></h2>
+
+    <p>Joyfully invite you to celebrate their wedding</p>
+
+    <hr>
+
+    <p><b>Date:</b> May 21, 2026 (Thursday)</p>
+    <p><b>Time:</b> 9:00 AM – 4:30 PM</p>
+    <p><b>Poruwa Ceremony:</b> 9:02 AM</p>
+
+    <p><b>Venue:</b><br>
+    Opuleent River Face Hotel,<br> Nawala</p>
+
+    <a class="btn" href="https://maps.google.com/?q=Opuleent River Face Hotel Nawala" target="_blank">
+      View Location
+    </a>
+
+    <div class="countdown" id="countdown"></div>
+
+  </div>
+</div>
+
+<script>
+  const weddingDate = new Date("May 21, 2026 09:00:00").getTime();
+
+  const timer = setInterval(function () {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("countdown").innerHTML =
+      "⏳ " + days + " days " + hours + " hrs " + minutes + " mins left";
+
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").innerHTML = "🎉 It's Wedding Time!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
