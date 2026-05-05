@@ -4,95 +4,168 @@
   <title>Nipuni & Kavinda Wedding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: 'Georgia', serif;
-      background: #fdf8f5;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdf8f5, #f3e9e2);
       text-align: center;
       color: #5a3e36;
     }
 
     .container {
-      padding: 20px;
+      padding: 15px;
       max-width: 600px;
       margin: auto;
     }
 
     h1 {
-      font-size: 38px;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
       color: #b08b57;
+      margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
       margin: 10px 0;
     }
 
     .card {
-      background: white;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
       padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
     }
 
     .gold {
       color: #b08b57;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 12px;
       padding: 12px 20px;
-      background: #b08b57;
+      background: linear-gradient(135deg, #b08b57, #d4af7a);
       color: white;
-      border-radius: 8px;
+      border-radius: 30px;
       text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     }
 
     .countdown {
-      font-size: 20px;
+      font-size: 18px;
       margin-top: 15px;
+      font-weight: 500;
     }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: #eee;
+      margin: 15px 0;
+    }
+
+    /* Fade animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      .card { padding: 20px; }
+    }
+
+    /* Smooth transition between screens */
+    #mainContent {
+      animation: fadeIn 0.8s ease;
+    }
+
   </style>
 </head>
 
 <body>
 
 <div class="container">
-  <div class="card">
+
+  <!-- Welcome Screen -->
+  <div id="welcomeScreen" class="card">
 
     <h1>💍 Wedding Invitation</h1>
 
-    <h2><span class="gold">Nipuni</span> & <span class="gold">Kavinda</span></h2>
+    <p style="margin-top:20px;">
+     With great joy, we invite you to share in the celebration of our wedding.
+    </p>
 
-    <p>Joyfully invite you to celebrate their wedding</p>
+    <p>
+      We would be truly honored by your presence as we mark this meaningful milestone.
+    </p>
 
-    <hr>
+    <br>
 
-    <p><b>Date:</b> May 21, 2026 (Thursday)</p>
-    <p><b>Time:</b> 9:00 AM – 4:30 PM</p>
-    <p><b>Poruwa Ceremony:</b> 9:02 AM</p>
-
-    <p><b>Venue:</b><br>
-    Opulent River Face Hotel,<br> Nawala</p>
-
-    <!-- ✅ NEW DOWNLOAD BUTTON -->
-    <a class="btn" href="NK final Card.jpg" target="_blank">
-       Download Invitation
-    </a>
-
-    <a class="btn" href="https://maps.google.com/?q=Opuleent River Face Hotel Nawala" target="_blank">
-      View Location
-    </a>
-
-    <div class="countdown" id="countdown"></div>
+    <button class="btn" onclick="showInvitation()">
+      View Invitation
+    </button>
 
   </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" style="display:none;">
+    <div class="card">
+
+      <h1>💍 Wedding Invitation</h1>
+
+      <h2><span class="gold">Nipuni</span> & <span class="gold">Kavinda</span></h2>
+
+      <p>Joyfully invite you to celebrate their wedding</p>
+
+      <hr>
+
+      <p><b>Date:</b> May 21, 2026 (Thursday)</p>
+      <p><b>Time:</b> 9:00 AM – 4:30 PM</p>
+
+      <p><b>Venue:</b><br>
+      Opuleent River Face Hotel,<br> Nawala</p>
+
+      <a class="btn" href="Invitation.pdf" target="_blank">
+        📄 View Invitation
+      </a>
+
+      <a class="btn" href="https://maps.google.com/?q=Opuleent River Face Hotel Nawala" target="_blank">
+        📍 View Location
+      </a>
+
+      <div class="countdown" id="countdown"></div>
+
+    </div>
+  </div>
+
 </div>
 
 <script>
+  function showInvitation() {
+    document.getElementById("welcomeScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  }
+
   const weddingDate = new Date("May 21, 2026 09:00:00").getTime();
 
   const timer = setInterval(function () {
